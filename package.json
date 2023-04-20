@@ -1,0 +1,11 @@
+{
+  "name": "Vite_React17_HooksPractice",
+  "version": "1.0.0",
+  "description": "react hooks exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "afrogenesurvive",
+  "license": "ISC"
+}
