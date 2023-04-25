@@ -38,16 +38,6 @@ app.use(
   expressMiddleware(server),
 );
 
-// --------------
-
-
-// app.use(
-//   cors(),
-//   bodyParser.json(),
-// );
-
-// // Add the Apollo Server middleware to the Express app
-// app.use(expressMiddleware(server));
 
 
 

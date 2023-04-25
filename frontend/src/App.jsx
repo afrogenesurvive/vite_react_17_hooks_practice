@@ -1,10 +1,53 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let requestBody = {
+        "query": "{ Hello }"
+      };
+      fetch('http://localhost:8000', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   'Accept': 'application/json',
+      //   'Access-Control-Allow-Origin': '*'
+      // }
+    })
+    .then(response => {
+      if (response.status !== 200 && response.status !== 201) {
+        throw new Error('Failed!');
+      }
+      return response.json();
+    })
+    .then(resData => {
+
+      console.log(resData.data.Hello);
+      setData(resData.data.Hello);
+      
+    })
+    .catch(err => {
+      console.log(error);
+    });
+    // .then(response => response.json())
+    // .then(data => console.log(data))
+    // .catch(error => console.error(error));
+
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -19,7 +62,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          count is {count} but also data: {data}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
